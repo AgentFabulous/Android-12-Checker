@@ -14,12 +14,22 @@ import subprocess
 import sys
 
 
+def check_app(name):
+    ret = which(name) is not None
+    if not ret:
+        print('[*] command not found: {}'.format(name))
+    return ret
+
+
 def main():
-    if which('nyancat') is None:
+    if not check_app('nyancat'):
         print('Please install \'nyancat\'! Exiting.')
         sys.exit()
+    term = input('Enter your terminal cmd (Eg. deepin-terminal, konsole): ')
+    if not check_app(term):
+        sys.exit()
+
     url = 'https://android.googlesource.com/platform/manifest/+refs'
-    term = 'deepin-terminal'
     matching = []
 
     while len(matching) is 0:
