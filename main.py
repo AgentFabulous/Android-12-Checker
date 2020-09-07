@@ -32,7 +32,7 @@ def main():
     url = 'https://android.googlesource.com/platform/manifest/+refs'
     matching = []
 
-    while len(matching) is 0:
+    while len(matching) == 0:
         print('\n[*] Checking!')
         tag_list = []
         response = requests.get(url)
