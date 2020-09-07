@@ -48,8 +48,12 @@ def main():
             print('[*] No Android 11 (yet) 😕')
             print('[*] Sleep time! 😴')
             time.sleep(10 * 60)  # Wait for 10 minutes
-
-    subprocess.Popen([term, '-e', 'nyancat'])
+    try:
+        from subprocess import DEVNULL
+    except ImportError:
+        import os
+        DEVNULL = open(os.devnull, 'wb')
+    subprocess.Popen([term, '-e', 'nyancat'], stdout=DEVNULL, stderr=subprocess.STDOUT)
 
 
 if __name__ == '__main__':
